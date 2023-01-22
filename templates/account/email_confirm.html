@@ -1,0 +1,27 @@
+{% extends '_base.html' %}
+
+{% block title %}Confirmation registration{% endblock %}
+
+{% block main %}
+    <div class="card border-primary m-auto mb-3"
+    style="max-width: 30rem;">
+        <div class="card-header">Confirm registration</div>
+        <div class="card-body">
+            {% if confirmation %}
+            <form action="{% url 'account_confirm_email' confirmation.key %}" method="post">
+                {% csrf_token %}
+                <p class="card-text">
+                    To confirm your registration.
+                </p>
+                <button class="btn btn-success form-control">Submit</button>
+            </form>
+            {% else %}
+            <p class="card-text">
+                The link has been used or is no longer available.
+                <a href="{% url 'account_email' %}">create a new link.</a>
+                We will send you a new confirmation link.
+            </p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

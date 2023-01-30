@@ -95,14 +95,13 @@ DATABASES = {
     }
 }
 
-#EMAIL
-SENDGRID_API_KEY = config('SENDGRID_API_KEY')
-EMAIL_HOST = 'smtp.sendgrid.net'
+
+EMAIL_HOST = 'smtp.dreamhost.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS= True
-EMAIL_HOST_USER = 'apikey'
-EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
-DEFAULT_FROM_EMAIL = 'alfcomputacion@gmail.com'
+EMAIL_HOST_USER = 'info@alfcomputacion.com'
+EMAIL_HOST_PASSWORD = '@Elgatomalillo'
+DEFAULT_FROM_EMAIL = 'info@alfcomputacion.com'
 
 AUTHENTICATION_BACKENDS =(
     'django.contrib.auth.backends.ModelBackend',

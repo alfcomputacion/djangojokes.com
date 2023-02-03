@@ -1,0 +1,23 @@
+{% extends '_base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Joke Detail{% endblock %}
+
+{% block main %}
+    <div class="card border-primary m-auto mb-3"
+        style="max-width: 30rem ;">
+        <div class="card-header text-primary text-center">{{ joke.question }}</div>
+        <div class="card-body">
+            <div class="card-text">
+                {{joke.answer}}
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">
+                    created on: {{joke.creted}}
+                    updated on: {{joke.updated}}
+                </small>
+            </div>
+        </div>
+    </div>
+{% endblock %}

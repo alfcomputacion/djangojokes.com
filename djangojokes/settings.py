@@ -41,15 +41,17 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.staticfiles',
 
-    #THIRD PARTY APPS
+    # THIRD PARTY APPS
     'crispy_forms',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
 
-    #MY apps
+    # MY apps
     'pages.apps.PagesConfig',
+    'jokes.apps.JokesConfig',
     'users.apps.UsersConfig',
+
 ]
 SITE_ID = 1
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -98,12 +100,12 @@ DATABASES = {
 
 EMAIL_HOST = 'smtp.dreamhost.com'
 EMAIL_PORT = 587
-EMAIL_USE_TLS= True
+EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'info@alfcomputacion.com'
 EMAIL_HOST_PASSWORD = '@Elgatomalillo'
 DEFAULT_FROM_EMAIL = 'info@alfcomputacion.com'
 
-AUTHENTICATION_BACKENDS =(
+AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 
     'allauth.account.auth_backends.AuthenticationBackend',
@@ -128,20 +130,20 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-#AUTHENTICATION SETTINGS
+# AUTHENTICATION SETTINGS
 AUTH_USER_MODEL = 'users.CustomUser'
 LOGIN_URL = 'account_login'
 LOGIN_REDIRECT_URL = 'pages:homepage'
 
-## django-allauth settings
-ACCOUNT_AUTHENTICATION_METHOD = 'email' # Default: 'username'
-ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1 # Default: 3
-ACCOUNT_EMAIL_REQUIRED = True # Default: False
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory' # Default: 'optional'
-ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5 # Default: 5
-ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 300 # Default 300
-ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login' # Default: '/'
-ACCOUNT_USERNAME_REQUIRED = False # Default: True
+# django-allauth settings
+ACCOUNT_AUTHENTICATION_METHOD = 'email'  # Default: 'username'
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1  # Default: 3
+ACCOUNT_EMAIL_REQUIRED = True  # Default: False
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'  # Default: 'optional'
+ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5  # Default: 5
+ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 300  # Default 300
+ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'  # Default: '/'
+ACCOUNT_USERNAME_REQUIRED = False  # Default: True
 
 
 # Internationalization
@@ -161,7 +163,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [ 
+STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 

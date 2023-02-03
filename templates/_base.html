@@ -35,6 +35,9 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'pages:about-us' %}">About us</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'jokes:list' %}">Jokes</a>
+            </li>
             {% if not user.is_authenticated %}
               <li class="nav-item">
                 <a href="{% url 'account_signup' %}" class="nav-link">Sign up</a>

@@ -1,0 +1,20 @@
+{% extends '_base.html' %}
+{% block title %}Jokes List{% endblock %}
+
+{% block main %}
+    <div class="card border-primary m-auto mb-3"
+        style="max-width: 40rem;">
+        <a class="btn btn-success btn-ms float-rig" href="{% url 'jokes:create' %}">+Joke</a>
+        {% for joke in joke_list %}
+        <div class="card-header">{{joke.question}}</div>
+        <div class="card-body">
+            <div class="card-text">
+                <a href="{{ joke.get_absolute_url }}">{{ joke.answer }}</a>
+                <a href="{% url 'jokes:update' joke.slug %}" class="btn btn-info float-right btn-ms mr-2">Update</a>
+                <a href="{% url 'jokes:delete' joke.slug %}" class="btn btn-danger float-right btn-ms mr-2">Delete</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

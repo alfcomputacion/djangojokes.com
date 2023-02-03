@@ -1,0 +1,17 @@
+{% extends '_base.html' %}
+
+{% block title %}Delete item{% endblock %}
+
+{% block main %}
+    <div class="card border-primary m-auto mb-3"
+        style="max-width: 30rem;">
+        <div class="card header">Delete product</div>
+        <form action="" method="post">
+            {% csrf_token %}
+            <p><strong>Are you sure you want to delete this Joke?</strong></p>
+            <p>{{ joke.question }}</p>
+            <button class="btn btn-success form-control">DELETE</button>
+            <a href="{% url 'jokes:list' %}" class="btn btn-info form-control">Jokes</a>
+        </form>
+    </div>
+{% endblock %}

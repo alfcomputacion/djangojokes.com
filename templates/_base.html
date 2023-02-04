@@ -8,13 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/270b3ce633.js" crossorigin="anonymous"></script>
     <title>{% block title%}{% endblock%}</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="{% url 'pages:homepage' %}"
         style="border-radius: 15px; border: 1.5rem black; padding: .5rem ; box-shadow: 0 0 .1rem black; margin: 0; background-color: black;"
-        ><img loading="lazy" src="{% static 'images/favicon.ico' %}" alt="logo" style="width: 50px;"></a>
+        ><img loading="lazy" src="{% static 'images/favicon.ico' %}" alt="logo" style="width: 30px;"></a>
 
         <p class="desapear text-primary" >
             ALFCOMPUTACION<br> 
@@ -51,7 +52,7 @@
                 Me
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">My Account</a>
+                <a class="dropdown-item" href="{% url 'my-account' %}">My Account</a>
                 <a class="dropdown-item" href="#">My Django Jokes</a>
                 <div class="dropdown-divider"></div>
                 <form action="{% url 'account_logout' %}" method="post">
@@ -72,7 +73,22 @@
         </div>
       </nav>
     {% block headers %}{% endblock %}
-    {% block main %}{% endblock %}
+    <main class="m-4 pb-5">
+      {% if messages %}
+        <ul>
+          {% for message in messages %}
+            <div class="alert message{{ message.tags }} alert-dismissible" role="alert">
+              <strong>{{ message }}</strong>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <i class="fas fa-window-close"></i>
+              </button>
+            </div>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    
+    {% block main %}Welcome!{% endblock %}
+    </main>
       <footer class="fixed-bottom text-white row"
         style="height: 2rem; background: #000044;">
         <div class="col">

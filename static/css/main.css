@@ -7,3 +7,34 @@
     'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 
     'Open Sans', 'Helvetica Neue', sans-serif;
 }
+
+/*MESSAGE STYLES*/
+.message{
+    background-color: palegoldenrod;
+    color: black;
+}
+.messagedebug{
+    background-color: slategray;
+    color: white;
+}
+.messageinfo{
+    background-color: azure;
+    color: darkblue;
+}
+.messagesuccess{
+    background-color: lightgreen;
+    color: darkgreen;
+}
+.messagewarning{
+    background-color: lightgoldenrodyellow;
+    color: darkgoldenrod;
+}
+.message{
+    background-color: palegoldenrod;
+    color: black;
+}
+
+.messageerror{
+    background-color: pink;
+    color: darkred;
+}

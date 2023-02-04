@@ -7,7 +7,7 @@ class JokeForm(ModelForm):
         model = Joke
 
         fields = [
-            'category', 'question', 'answer'
+            'user', 'category', 'tags', 'question', 'answer'
         ]
 
         widgets = {
@@ -19,5 +19,6 @@ class JokeForm(ModelForm):
             )
         }
         help_texts = {
-            'question': 'No dirty Jokes please.'
+            'question': 'No dirty Jokes please.',
+            'tags': 'Use Ctrl+click to select multiple tags.'
         }

@@ -1,0 +1,15 @@
+Hello!
+
+You are receiving this email because someone has registered you for {{ current_site.name }} using this email address.
+
+To confirm yous go to: {{ activate_url }}
+
+Thank you.
+
+Hola!
+
+Este correo te llego por que alguien se registro a {{ current_site.name }} usando este correo.
+
+Para confirmar solo haz click aqui: {{ activate_url }}
+
+Gracias!

@@ -31,6 +31,9 @@
                 created on: {{joke.creted}} by {{joke.user}} <br>
                 updated on: {{joke.updated}}
             </small>
+            {% if joke.user.avatar %}
+                <img src="{{joke.user.avatar.url}}" alt="{{joke.user.username}}" class="mt-1 rounded float-end" >
+            {% endif %}
         </div>
         </div>
     </div>

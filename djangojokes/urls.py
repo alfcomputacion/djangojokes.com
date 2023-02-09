@@ -22,6 +22,9 @@ urlpatterns = [
     path('admin/doc/', include('django.contrib.admindocs.urls')),
     path('admin/', admin.site.urls),
 
+    # private Storage
+    path('media/private/', include('private_storage.urls')),
+
     # user management
     path('account/', include('users.urls')),
     path('account/', include('allauth.urls')),

@@ -21,7 +21,8 @@ class CustomUserChangeForm(UserChangeForm):
         BIRTH_YEAR_CHOICES = range(1915, datetime.now().year)
 
         model = get_user_model()
-        fields = ('email', 'username', 'first_name', 'last_name', 'dob')
+        fields = ('email', 'username', 'first_name',
+                  'last_name', 'dob', 'avatar')
 
         widgets = {
             'dob': forms.SelectDateWidget(

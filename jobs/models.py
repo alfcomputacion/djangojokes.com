@@ -58,7 +58,7 @@ class Applicant(models.Model):
     cover_letter = models.TextField()
 
     resume = models.FileField(
-        PrivateMediaStorage(),
+        storage=PrivateMediaStorage(),
         upload_to='resumes', blank=True, help_text='PDFs only',
         validators=[validate_pdf]
     )

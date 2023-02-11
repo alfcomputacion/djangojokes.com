@@ -192,6 +192,9 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
+# # Local Static File Settings
+# STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+# STATIC_URL = '/static/'
 
 # MEDIA_URL = '/media/'
 

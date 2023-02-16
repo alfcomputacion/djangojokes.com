@@ -28,6 +28,7 @@ class JobAppView(FormView):
         content += '</ol>'
 
         send_email(to, subject, content)
+        form.save()
         return super().form_valid(form)
 
 

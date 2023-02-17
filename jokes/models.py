@@ -36,7 +36,7 @@ class Joke(models.Model):
     answer = models.CharField(max_length=150)
     category = models.ForeignKey(
         'Category', related_name='jokes', on_delete=models.PROTECT)
-    tags = models.ManyToManyField('Tag')
+    tags = models.ManyToManyField('Tag', blank=True, related_name='jokes')
     slug = models.SlugField(max_length=50, unique=True, editable=False)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

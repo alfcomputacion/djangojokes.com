@@ -4,6 +4,7 @@ window.addEventListener('load', ()=>{
         const dislikeButton = document.getElementById('dislike-button');
         likeButton.addEventListener('click', ()=> {register(1);})
         dislikeButton.addEventListener('click', ()=> { register(-1);})
+        console.log('This file works')
     }
 })
 

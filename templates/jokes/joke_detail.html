@@ -1,7 +1,13 @@
 {% extends '_base.html' %}
+{% load static %}
 
 {% load crispy_forms_tags %}
-
+{% block javascript %}
+    <script>
+        const ajaxURL = "{% url 'jokes:ajax-vote' joke.slug %}";
+    </script>
+    <script src="{% static 'js/jokes.js' %}"></script>
+{% endblock %}
 {% block title %}Joke Detail{% endblock %}
 
 {% block main %}
@@ -19,16 +25,40 @@
                         <span class="badge badge-pill badge-secondary">{{ tag.tag }}</span>
                     {% endfor %}
                 </div>
-            {% if joke.user == user %}
                 <div class="border-bottom border-faded m-2 pb-2">
-                    <a href="{% url 'jokes:update' joke.slug %}" 
-                        class="btn btn-info btn-sm mr-2">Update</a>
-                    <a href="{% url 'jokes:delete' joke.slug %}" 
-                        class="btn btn-danger btn-sm mr-2">Delete</a>
+                    {% if joke.user == user %}
+                        <a href="{% url 'jokes:update' joke.slug %}" 
+                            class="btn btn-info btn-sm mr-2">Update</a>
+                        <a href="{% url 'jokes:delete' joke.slug %}" 
+                            class="btn btn-danger btn-sm mr-2">Delete</a>
+                            <p>
+                                Your joke has
+                                <span id="num-votes">
+                                  {{ joke.num_votes|default:'no' }}
+                                  vote{{ joke.num_votes|pluralize }}</span>{% if joke.num_votes %}:
+                                <span id="likes">{{ joke.num_likes }}
+                                  like{{ joke.num_likes|pluralize }}</span> and
+                                <span id="dislikes">
+                                  {{ joke.num_dislikes }}
+                                  dislike{{ joke.num_dislikes|pluralize }}</span>{% endif %}.
+                              </p>
+                    {% else %}
+                              {% csrf_token %}
+                              <button id="dislike-button" class="btn btn-light">
+                                <i class="fas fa-thumbs-down fa-2x text-danger mx-3"></i>
+                                <span id="dislikes">{{ joke.num_dislikes }}</span>
+                              </button>
+                              <button id="like-button" class="btn btn-light">
+                                <i class="fas fa-thumbs-up fa-2x text-success mx-3"></i>
+                                <span id="likes">{{ joke.num_likes }}</span>
+                              </button>
+                              <div id="output" class="text-info"></div>
+                              <span id="num-votes">{{ joke.num_votes }}
+                                vote{{ joke.num_votes|pluralize }}</span>
+                    {% endif %}
                 </div>
-            {% endif %}
             <small class="text-muted">
-                created on: {{joke.creted}} by {{joke.user}} <br>
+                created on: {{joke.created}} by {{joke.user}} <br>
                 updated on: {{joke.updated}}
             </small>
             {% if joke.user.avatar %}

@@ -3,12 +3,13 @@
 
 {% block title %}Jokes{% endblock %}
 {% block main %}
-  <div class="row">
+  <div class="row" style="padding-bottom: 5rem;">
     <div class="col-12 col-md-2 col-lg-3">
       <h2>Jokes</h2>
     </div>
     <div class="col-12 col-md-8 col-lg-6">
       <form class="form-inline my-2 mx-auto" style="max-width: 30rem;">
+        <input type="hidden" name="q" value="{{ request.GET.q }}">
         <label class="my-1 me-2" for="order">Order By:</label>
         <select class="form-control me-sm-2" name="order" id="order">
           {% for field in order_fields %}
@@ -49,20 +50,21 @@
         {% with order=request.GET.order dir=request.GET.direction %}
           <tr>
             {% if order == 'joke' and dir == 'asc' %}
-              <th><a href="?order=joke&direction=desc">Joke</a></th>
+              <th><a href="?order=joke&direction=desc&q={{ request.GET.q }}">Joke</a></th>
             {% else %}
-              <th><a href="?order=joke&direction=asc">Joke</a></th>
+              <th><a href="?order=joke&direction=asc&q={{ request.GET.q }}">Joke</a></th>
             {% endif %}
             {% if order == 'category' and dir == 'asc' %}
-              <th><a href="?order=category&direction=desc">Category</a></th>
+              <th><a href="?order=category&direction=desc&q={{ request.GET.q}}">Category</a></th>
             {% else %}
               <th><a href="?order=category&direction=asc">Category</a></th>
             {% endif %}
             {% if order == 'creator' and dir == 'asc' %}
-              <th><a href="?order=creator&direction=desc">Creator</a></th>
+              <th><a href="?order=creator&direction=desc&q={{ request.GET.q }}">Creator</a></th>
             {% else %}
-              <th><a href="?order=creator&direction=asc">Creator</a></th>
+              <th><a href="?order=creator&direction=asc&q={{ request.GET.q }}">Creator</a></th>
             {% endif %}
+            <th>Rating</th>
           </tr>
         {% endwith %}
       </thead>
@@ -94,10 +96,26 @@
                 </small>
               {% endif %}
             </td>
+            <td>
+              {% with votes=joke.votes %}
+              <div id="rating-container" title="{{ votes.rating }}" 
+              style="background-color: silver;
+              border-radius: .5em;
+              max-width: 5rem;
+              padding: 2px;">
+                  <div id="rating" 
+                  style="width:{% widthratio votes.rating 10 100 %}%;
+                  background-color:gold; border-radius: .5em; height: 10px;"></div>
+              </div>
+              ({{ votes.num_votes }}) vote{{ votes.num_votes|pluralize }}
+              {% endwith %}
+            </td>
           </tr>
         {% endfor %}
       </tbody>
     </table>
   </div>
-  {% include 'includes/pagination.html' %}
+  <div class="fixed-bottom" style="margin-bottom: 2rem;">
+      {% include 'includes/pagination.html' %}
+  </div>
 {% endblock %}

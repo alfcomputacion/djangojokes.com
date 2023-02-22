@@ -1,5 +1,7 @@
 import json
 from django.http import JsonResponse
+from django.db.models import Q
+
 
 from django.urls import reverse_lazy
 from django.contrib import messages
@@ -161,6 +163,27 @@ class JokeListView(ListView):
     #         qs = qs.filter(user__username=username)
 
     #     return qs.order_by(ordering)
+
+    def get_queryset(self):
+        ordering = self.get_ordering()
+        qs = Joke.objects.all()
+
+        if 'q' in self.request.GET:
+            q = self.request.GET.get('q')
+            qs = qs.filter(
+                Q(question__icontains=q) | Q(answer__icontains=q)
+            )
+        if 'slug' in self.kwargs:
+            slug = self.kwargs['slug']
+            if '/category' in self.request.path_info:
+                qs = qs.filter(category__slug=slug)
+            if '/tag' in self.request.path_info:
+                qs = qs.filter(tags__slug=slug)
+        elif 'username' in self.kwargs:
+            username = self.kwargs['username']
+            qs = qs.filter(user__username=username)
+
+        return qs.order_by(ordering)
 
 
 class JokeUpdateView(SuccessMessageMixin, UserPassesTestMixin, UpdateView):

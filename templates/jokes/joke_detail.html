@@ -31,30 +31,34 @@
                             class="btn btn-info btn-sm mr-2">Update</a>
                         <a href="{% url 'jokes:delete' joke.slug %}" 
                             class="btn btn-danger btn-sm mr-2">Delete</a>
+                            {% with votes=joke.votes %}
                             <p>
                                 Your joke has
                                 <span id="num-votes">
-                                  {{ joke.num_votes|default:'no' }}
-                                  vote{{ joke.num_votes|pluralize }}</span>{% if joke.num_votes %}:
-                                <span id="likes">{{ joke.num_likes }}
-                                  like{{ joke.num_likes|pluralize }}</span> and
+                                  {{ votes.num_votes|default:'no' }}
+                                  vote{{ votes.num_votes|pluralize }}</span>{% if votes.num_votes %}:
+                                <span id="likes">{{ votes.likes }}
+                                  like{{ votes.likes|pluralize }}</span> and
                                 <span id="dislikes">
-                                  {{ joke.num_dislikes }}
-                                  dislike{{ joke.num_dislikes|pluralize }}</span>{% endif %}.
+                                  {{ votes.dislikes }}
+                                  dislike{{ votes.dislikes|pluralize }}</span>{% endif %}.
                               </p>
+                            {% endwith %}
                     {% else %}
-                              {% csrf_token %}
+                        {% csrf_token %}
+                            {% with votes=joke.votes %}
                               <button id="dislike-button" class="btn btn-light">
                                 <i class="fas fa-thumbs-down fa-2x text-danger mx-3"></i>
-                                <span id="dislikes">{{ joke.num_dislikes }}</span>
+                                <span id="dislikes">{{ votes.dislikes }}</span>
                               </button>
                               <button id="like-button" class="btn btn-light">
                                 <i class="fas fa-thumbs-up fa-2x text-success mx-3"></i>
-                                <span id="likes">{{ joke.num_likes }}</span>
+                                <span id="likes">{{ votes.likes }}</span>
                               </button>
                               <div id="output" class="text-info"></div>
-                              <span id="num-votes">{{ joke.num_votes }}
-                                vote{{ joke.num_votes|pluralize }}</span>
+                              <span id="num-votes">{{ votes.num_votes }}
+                                vote{{ votes.num_votes|pluralize }}</span>
+                            {% endwith %}
                     {% endif %}
                 </div>
             <small class="text-muted">

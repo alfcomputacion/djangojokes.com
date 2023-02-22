@@ -68,8 +68,10 @@
               <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
             </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <form class="form-inline my-2 my-lg-0" action="{% url 'jokes:list' %}">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" 
+            name="q"
+            value="{{ request.Get.q }}">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </form>
         </div>

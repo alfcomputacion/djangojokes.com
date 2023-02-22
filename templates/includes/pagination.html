@@ -2,11 +2,11 @@
     <ul class="pagination justify-content-center">
         {% if page_obj.has_previous %}
             <li class="page-item">
-                <a href="?page=1" class="page-link">&laquo; 1. . .</a>
+                <a href="?page=1&order={{ order }}&direction={{ direction }}&q={{ request.GET.q }}" class="page-link">&laquo; 1. . .</a>
             </li>
             {% if page_obj.previous_page_number != 1 %}
                 <li class="page-item">
-                    <a href="?page={{ page_obj.previous_page_number }}" class="page-link">
+                    <a href="?page={{ page_obj.previous_page_number }}&order={{ order }}&direction={{ direction }}&q={{ request.GET.q }}" class="page-link">
                         {{ page_obj.previous_page_number }}
                     </a>
                 </li>
@@ -20,13 +20,13 @@
         {% if page_obj.has_next %}
             {% if page_obj.next_page_number != page_obj.paginator.num_pages %}
                 <li class="page-item">
-                    <a href="?page={{ page_obj.next_page_number }}" class="page-link">
+                    <a href="?page={{ page_obj.next_page_number }}&order={{ order }}&direction={{ direction }}&q={{ request.GET.q }}" class="page-link">
                         {{ page_obj.next_page_number }}
                     </a>
                 </li>
             {% endif %}
             <li class="page-item">
-                <a href="?page={{ page_obj.paginator.num_pages }}" class="page-link">
+                <a href="?page={{ page_obj.paginator.num_pages }}&order={{ order }}&direction={{ direction }}&q={{ request.GET.q }}" class="page-link">
                     . . .{{ page_obj.paginator.num_pages }}&raquo;
                 </a>
             </li>
